@@ -2,9 +2,7 @@ import $ from 'jquery';
 
 var Dispatcher = require('../dispatcher');
 var ActionTypes = require('../constants/constants').ActionTypes;
-
 //module.exports = {
-
 
   export function playVideo(player){
     Dispatcher.dispatch({
@@ -16,8 +14,10 @@ var ActionTypes = require('../constants/constants').ActionTypes;
   export function loadVideo(video, delay){
     $.ajax({
       method: 'POST',
-      url: '/update/',
-      data: video,
+      url:'update/',
+      data: JSON.stringify(video),
+      contentType: "application/json",
+      dataType: 'json',
       success: function(data){
         Dispatcher.dispatch({
           type: ActionTypes.LOAD_VIDEO,
@@ -38,7 +38,9 @@ var ActionTypes = require('../constants/constants').ActionTypes;
   export function deleteVideo(video){
     $.ajax({
       method: 'POST',
-      url: '/delete/'+ video.id.videoId, 
+      url: 'delete/'+ video.id.videoId, 
+      contentType: "application/json",
+      dataType: 'json',
       success: function(data){
         console.log('actions', data)
         Dispatcher.dispatch({
@@ -58,8 +60,10 @@ var ActionTypes = require('../constants/constants').ActionTypes;
   export function enqueueVideo(video){
     $.ajax({
       method: 'POST',
-      url: '/enqueue', 
-      data: video,
+      url:'enqueue', 
+      data: JSON.stringify(video),
+      contentType: "application/json",
+      dataType: 'json',
       success: function(data){
         Dispatcher.dispatch({
           type: ActionTypes.ENQUEUE_VIDEO,
