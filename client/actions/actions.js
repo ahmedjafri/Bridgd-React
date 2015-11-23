@@ -60,7 +60,7 @@ var ActionTypes = require('../constants/constants').ActionTypes;
   export function enqueueVideo(video){
     $.ajax({
       method: 'POST',
-      url:'enqueue', 
+      url:'', 
       data: JSON.stringify(video),
       contentType: "application/json",
       dataType: 'json',
